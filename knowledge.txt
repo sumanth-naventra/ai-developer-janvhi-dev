@@ -1,0 +1,14 @@
+# Aptitude
+Work and Time problems involve people working together and finding time.
+Profit and Loss questions use cost price, selling price, and gain/loss percent.
+...
+
+# Reasoning
+Syllogism is about statements and logical conclusions.
+Blood relation problems test how family members are connected.
+...
+
+# Verbal
+Synonyms and Antonyms test vocabulary.
+Reading comprehension tests understanding of passages.
+...

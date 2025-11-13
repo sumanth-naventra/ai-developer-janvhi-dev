@@ -1,0 +1,19 @@
+{
+  "score": {
+    "aptitude": "2/5",
+    "reasoning": "3/5",
+    "verbal": "3/5"
+  },
+  "weak_topics": [
+    "Time & Work",
+    "Ratios",
+    "Ages",
+    "Direction Sense",
+    "Clock & Time",
+    "Vocabulary",
+    "Synonyms"
+  ],
+  "feedback": "You need improvement in the following topics.",
+  "focus_suggestion": "Focus on: Time & Work, Ratios, Ages, Direction Sense, Clock & Time, Vocabulary, Synonyms",
+  "difficulty": "Medium"
+}
