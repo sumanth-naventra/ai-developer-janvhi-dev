@@ -1,0 +1,302 @@
+{
+  "Python": {
+    "Easy": {
+      "question": "Write a Python function called `add_two_numbers` that takes two integers as input and returns their sum.",
+      "difficulty": "Easy",
+      "language": "Python",
+      "input": "Two integers n1 and n2.",
+      "expected_output": "The sum of n1 and n2.",
+      "test_cases": [
+        {
+          "input": "3, 5",
+          "output": "8"
+        },
+        {
+          "input": "10, 20",
+          "output": "30"
+        },
+        {
+          "input": "-2, 4",
+          "output": "2"
+        },
+        {
+          "input": "0, 0",
+          "output": "0"
+        },
+        {
+          "input": "7, -5",
+          "output": "2"
+        }
+      ],
+      "solution": "def add_two_numbers(n1, n2):\n    return n1 + n2"
+    },
+    "Medium": {
+      "question": "Write a function called 'find_triplets' that takes a list of integers and an integer target as input and returns all unique triplets in the list that sum up to the target. Numbers in each triplet must be in non-descending order. The list of triplets should not contain duplicate triplets.",
+      "difficulty": "Medium",
+      "language": "Python",
+      "input": "A list of integers 'nums' and an integer 'target'.",
+      "expected_output": "A list of unique triplets that sum up to the target, sorted in non-descending order within each triplet.",
+      "test_cases": [
+        {
+          "input": {
+            "nums": [
+              1,
+              2,
+              -3,
+              0,
+              -1,
+              2,
+              -2,
+              3
+            ],
+            "target": 0
+          },
+          "output": [
+            [
+              -3,
+              0,
+              3
+            ],
+            [
+              -2,
+              -1,
+              3
+            ],
+            [
+              -2,
+              0,
+              2
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "input": {
+            "nums": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "target": 0
+          },
+          "output": [
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "input": {
+            "nums": [
+              -1,
+              0,
+              1,
+              2,
+              -1,
+              -4
+            ],
+            "target": 0
+          },
+          "output": [
+            [
+              -1,
+              -1,
+              2
+            ],
+            [
+              -1,
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "solution": "def find_triplets(nums, target):\n    nums.sort()\n    result = []\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        left, right = i + 1, len(nums) - 1\n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            if total == target:\n                result.append([nums[i], nums[left], nums[right]])\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                left += 1\n                right -= 1\n            elif total < target:\n                left += 1\n            else:\n                right -= 1\n    return result"
+    },
+    "Hard": {
+      "question": "You are given a maze represented as a 2D grid where each cell is either passable (denoted by 0) or blocked (denoted by 1). Your goal is to find the shortest path from the top-left corner (0, 0) to the bottom-right corner (n-1, m-1). You can only move up, down, left, or right, and cannot pass through blocked cells. Write a function `shortest_path_in_maze(maze: List[List[int]]) -> int` that returns the length of the shortest path. If no path exists, return -1.",
+      "difficulty": "Hard",
+      "language": "Python",
+      "input": "Input is given as a 2D list where each element is either 0 or 1.",
+      "expected_output": "The output is an integer indicating the length of the shortest path, or -1 if no path exists.",
+      "test_cases": [
+        {
+          "input": "[[0,0,1,0],[1,0,1,0],[0,0,0,1],[1,1,0,0]]",
+          "output": "6"
+        },
+        {
+          "input": "[[0,1,1],[0,1,1],[0,0,0]]",
+          "output": "4"
+        },
+        {
+          "input": "[[0,1,0],[0,1,0],[0,1,0]]",
+          "output": "-1"
+        },
+        {
+          "input": "[[0]]",
+          "output": "1"
+        },
+        {
+          "input": "[[0,0,0],[0,1,1],[1,1,0]]",
+          "output": "-1"
+        }
+      ],
+      "solution": "from collections import deque\n\ndef shortest_path_in_maze(maze):\n    n, m = len(maze), len(maze[0])\n    if maze[0][0] == 1 or maze[n-1][m-1] == 1:\n        return -1\n\n    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n    queue = deque([(0, 0, 1)])\n    visited = set()\n    visited.add((0, 0))\n\n    while queue:\n        x, y, dist = queue.popleft()\n\n        if (x, y) == (n-1, m-1):\n            return dist\n\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n\n            if 0 <= nx < n and 0 <= ny < m and maze[nx][ny] == 0 and (nx, ny) not in visited:\n                visited.add((nx, ny))\n                queue.append((nx, ny, dist + 1))\n\n    return -1"
+    }
+  },
+  "Java": {
+    "Easy": {
+      "question": "Write a program to check if a given number is even or odd.",
+      "difficulty": "Easy",
+      "language": "Java",
+      "input": "An integer number.",
+      "expected_output": "Print 'Even' if the number is even, and 'Odd' if the number is odd.",
+      "test_cases": [
+        {
+          "input": "4",
+          "output": "Even"
+        },
+        {
+          "input": "7",
+          "output": "Odd"
+        },
+        {
+          "input": "0",
+          "output": "Even"
+        },
+        {
+          "input": "-3",
+          "output": "Odd"
+        }
+      ],
+      "solution": "import java.util.Scanner;\n\npublic class EvenOddCheck {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter a number: \");\n        int number = scanner.nextInt();\n\n        if (number % 2 == 0) {\n            System.out.println(\"Even\");\n        } else {\n            System.out.println(\"Odd\");\n        }\n    }\n}"
+    },
+    "Medium": {
+      "question": "Write a Java program to find all unique permutations of a given string.",
+      "difficulty": "Medium",
+      "language": "Java",
+      "input": "A single string, str (1 <= str.length() <= 8), containing only letters (a-z).",
+      "expected_output": "A list of unique permutations of the given string in lexicographical order.",
+      "test_cases": [
+        {
+          "input": "abc",
+          "output": "[abc, acb, bac, bca, cab, cba]"
+        },
+        {
+          "input": "aab",
+          "output": "[aab, aba, baa]"
+        },
+        {
+          "input": "aa",
+          "output": "[aa]"
+        }
+      ],
+      "solution": "import java.util.*;\n\npublic class UniquePermutations {\n\n    public static List<String> findPermutations(String str) {\n        List<String> result = new ArrayList<>();\n        if (str == null || str.isEmpty()) return result;\n\n        char[] chars = str.toCharArray();\n        Arrays.sort(chars);\n        boolean[] used = new boolean[chars.length];\n        StringBuilder current = new StringBuilder();\n\n        backtrack(chars, used, current, result);\n        return result;\n    }\n\n    private static void backtrack(char[] chars, boolean[] used, StringBuilder current, List<String> result) {\n        if (current.length() == chars.length) {\n            result.add(current.toString());\n            return;\n        }\n\n        for (int i = 0; i < chars.length; i++) {\n            if (used[i]) continue;\n            if (i > 0 && chars[i] == chars[i - 1] && !used[i - 1]) continue;\n\n            used[i] = true;\n            current.append(chars[i]);\n            backtrack(chars, used, current, result);\n            current.deleteCharAt(current.length() - 1);\n            used[i] = false;\n        }\n    }\n\n    public static void main(String[] args) {\n        String input = \"aab\";\n        List<String> permutations = findPermutations(input);\n        System.out.println(permutations);\n    }\n}"
+    },
+    "Hard": {
+      "question": "Implement a Rate Limiter using the Token Bucket algorithm. Create a class `RateLimiter` with a configurable rate of tokens being added to the bucket per second and a maximum bucket capacity. The `RateLimiter` class should have methods `allowRequest()` that returns `true` if a request is allowed, or `false` otherwise.",
+      "difficulty": "Hard",
+      "language": "Java",
+      "input": "A class `RateLimiter` and series of method calls like `RateLimiter.allowRequest()`.",
+      "expected_output": "The method `RateLimiter.allowRequest()` should return true or false based on the token bucket algorithm's rules.",
+      "test_cases": [
+        {
+          "input": "RateLimiter rateLimiter = new RateLimiter(5, 10); // 5 tokens/sec, max capacity 10\nThread.sleep(500);\nboolean result1 = rateLimiter.allowRequest();\nboolean result2 = rateLimiter.allowRequest();",
+          "output": "true,true"
+        },
+        {
+          "input": "RateLimiter rateLimiter = new RateLimiter(2, 4); // 2 tokens/sec, max capacity 4\nboolean result1 = rateLimiter.allowRequest();\nboolean result2 = rateLimiter.allowRequest();\nboolean result3 = rateLimiter.allowRequest();",
+          "output": "true,true,false"
+        },
+        {
+          "input": "RateLimiter rateLimiter = new RateLimiter(10, 5); // 10 tokens/sec, max capacity 5\nThread.sleep(200);\nboolean result = rateLimiter.allowRequest();",
+          "output": "false"
+        }
+      ],
+      "solution": "import java.util.concurrent.locks.ReentrantLock;\n\npublic class RateLimiter {\n    private final int capacity;\n    private final double fillRate;\n    private double tokens;\n    private long lastRefillTimestamp;\n    private final ReentrantLock lock = new ReentrantLock();\n\n    public RateLimiter(int fillRate, int capacity) {\n        this.fillRate = fillRate;\n        this.capacity = capacity;\n        this.tokens = capacity;\n        this.lastRefillTimestamp = System.nanoTime();\n    }\n\n    public boolean allowRequest() {\n        lock.lock();\n        try {\n            refill();\n            if (tokens >= 1) {\n                tokens -= 1;\n                return true;\n            } else {\n                return false;\n            }\n        } finally {\n            lock.unlock();\n        }\n    }\n\n    private void refill() {\n        long now = System.nanoTime();\n        double tokensToAdd = (now - lastRefillTimestamp) / 1e9 * fillRate;\n        tokens = Math.min(capacity, tokens + tokensToAdd);\n        lastRefillTimestamp = now;\n    }\n}\n\n// Example usage of RateLimiter\n// RateLimiter rateLimiter = new RateLimiter(5, 10); // 5 tokens/sec, max capacity 10\n// boolean canProceed = rateLimiter.allowRequest();"
+    }
+  },
+  "C++": {
+    "Easy": {
+      "question": "Write a C++ program to find the sum of two integers entered by the user.",
+      "difficulty": "Easy",
+      "language": "C++",
+      "input": "Two integers entered by the user.",
+      "expected_output": "The sum of the two integers.",
+      "test_cases": [
+        {
+          "input": "5 10",
+          "output": "15"
+        },
+        {
+          "input": "20 30",
+          "output": "50"
+        },
+        {
+          "input": "-5 8",
+          "output": "3"
+        }
+      ],
+      "solution": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int num1, num2;\n    cout << \"Enter two integers: \";\n    cin >> num1 >> num2;\n    int sum = num1 + num2;\n    cout << \"The sum is: \" << sum << endl;\n    return 0;\n}"
+    },
+    "Medium": {
+      "question": "Implement a function to find the longest substring in a given string that contains at most two distinct characters. The function should return the length of the substring.",
+      "difficulty": "Medium",
+      "language": "C++",
+      "input": "A single string consisting of lowercase alphabets.",
+      "expected_output": "An integer representing the length of the longest substring containing at most two distinct characters.",
+      "test_cases": [
+        {
+          "input": "eceba",
+          "output": "3"
+        },
+        {
+          "input": "ccaabbb",
+          "output": "5"
+        },
+        {
+          "input": "aaaaa",
+          "output": "5"
+        },
+        {
+          "input": "abcabcabc",
+          "output": "2"
+        },
+        {
+          "input": "aabbcc",
+          "output": "4"
+        }
+      ],
+      "solution": "#include <iostream>\n#include <unordered_map>\n#include <string>\nusing namespace std;\n\nint lengthOfLongestSubstringTwoDistinct(string s) {\n    unordered_map<char, int> charCount;\n    int maxLength = 0, start = 0;\n\n    for (int end = 0; end < s.length(); ++end) {\n        charCount[s[end]]++;\n\n        while (charCount.size() > 2) {\n            charCount[s[start]]--;\n            if (charCount[s[start]] == 0) {\n                charCount.erase(s[start]);\n            }\n            ++start;\n        }\n\n        maxLength = max(maxLength, end - start + 1);\n    }\n    return maxLength;\n}\n\nint main() {\n    string input;\n    cout << \"Enter a string: \";\n    cin >> input;\n    cout << \"Length of longest substring with at most two distinct characters: \" << lengthOfLongestSubstringTwoDistinct(input) << endl;\n    return 0;\n}"
+    },
+    "Hard": {
+      "question": "Implement a custom data structure called `FrequencyStack` that supports the following operations:\n1. `push(int x)`: Pushes an integer `x` onto the stack.\n2. `pop()`: Removes and returns the most frequent element in the stack. If there is a tie for the most frequent element, the element closest to the top of the stack is removed and returned.\n\nThe operations must be optimized to run in O(1) time for `push` and O(log N) time for `pop`, where N is the number of elements in the stack.",
+      "difficulty": "Hard",
+      "language": "C++",
+      "input": "Array of integers to be pushed into the stack and a sequence of operations to be performed (push or pop).",
+      "expected_output": "After performing the sequence of operations, return the output of all the pop operations in the order they were performed.",
+      "test_cases": [
+        {
+          "input": "{push: [5, 7, 5, 7, 4, 5], operations: [pop, pop, pop, pop]}",
+          "output": "[5, 7, 5, 4]"
+        },
+        {
+          "input": "{push: [1, 2, 3, 2, 1, 1, 4, 2], operations: [pop, pop, pop, pop]}",
+          "output": "[1, 2, 1, 2]"
+        },
+        {
+          "input": "{push: [10, 20, 10, 20, 10, 30, 40], operations: [pop, pop, pop]}",
+          "output": "[10, 20, 10]"
+        }
+      ],
+      "solution": "#include <unordered_map>\n#include <stack>\n#include <vector>\n#include <iostream>\nusing namespace std;\n\nclass FrequencyStack {\nprivate:\n    unordered_map<int, int> freq; // stores frequency of each element\n    unordered_map<int, stack<int>> group; // maps frequency to stack of elements with that frequency\n    int maxFreq; // keeps track of the maximum frequency\n\npublic:\n    FrequencyStack() : maxFreq(0) {}\n\n    void push(int x) {\n        // Increase the frequency of x\n        freq[x]++;\n        int f = freq[x];\n        // Update maxFreq if needed\n        maxFreq = max(maxFreq, f);\n        // Add x to the stack corresponding to its frequency\n        group[f].push(x);\n    }\n\n    int pop() {\n        // Get the element from the stack with the current max frequency\n        int x = group[maxFreq].top();\n        group[maxFreq].pop();\n        // Decrease its frequency\n        freq[x]--;\n        // If the stack for this frequency is empty, reduce maxFreq\n        if (group[maxFreq].empty()) {\n            maxFreq--;\n        }\n        return x;\n    }\n};\n\nint main() {\n    FrequencyStack fs;\n    fs.push(5);\n    fs.push(7);\n    fs.push(5);\n    fs.push(7);\n    fs.push(4);\n    fs.push(5);\n    cout << fs.pop() << endl; // 5\n    cout << fs.pop() << endl; // 7\n    cout << fs.pop() << endl; // 5\n    cout << fs.pop() << endl; // 4\n    return 0;\n}"
+    }
+  }
+}
